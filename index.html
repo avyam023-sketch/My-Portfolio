@@ -13,33 +13,44 @@
 
   <style>
   :root {
-    /* Default = dark theme */
-    --bg-gradient: #000000;
-    --bg-alt: #000000;
-    --card-bg: rgba(0, 0, 0, 0.8);
-    --accent: #8b5cf6;
-    --accent-hover: #a78bfa;
-    --accent-light: rgba(139, 92, 246, 0.15);
-    --text: #ffffff;
-    --muted: #b0b0b0;
-    --border-subtle: rgba(255, 255, 255, 0.15);
+    /* Default = dark theme - Charcoal Black + Soft Gray */
+    --bg-gradient: #121212;
+    --bg-alt: #1A1A1A;
+    --card-bg: #1F1F1F;
+    --accent: #4A90E2;
+    --accent-hover: #5BA3F5;
+    --accent-light: rgba(74, 144, 226, 0.15);
+    --text: #EDEDED;
+    --muted: #B0B0B0;
+    --border-subtle: rgba(255, 255, 255, 0.1);
     --radius-lg: 20px;
     --radius-xl: 28px;
-    --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.9);
-    --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.4);
-    --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-    --gradient-secondary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 30px rgba(74, 144, 226, 0.25);
+    --gradient-primary: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+    --gradient-secondary: linear-gradient(135deg, #357ABD 0%, #4A90E2 100%);
   }
 
   body[data-theme="light"] {
-    --bg-gradient: radial-gradient(circle at top, #f8fafc 0, #f1f5f9 50%, #e2e8f0 100%);
-    --bg-alt: #f1f5f9;
-    --card-bg: rgba(255, 255, 255, 0.9);
-    --text: #0f172a;
-    --muted: #64748b;
-    --border-subtle: rgba(148, 163, 184, 0.3);
-    --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.1);
-    --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.2);
+    /* Light theme - Refined Soft Gray */
+    --bg-gradient: radial-gradient(circle at top, #F4F6F8 0, #F5F5F5 50%, #EDEFF2 100%);
+    --bg-alt: #F5F5F5;
+    --card-bg: #FFFFFF;
+    --text: #1F2933;
+    --muted: #6B7280;
+    --border-subtle: rgba(107, 114, 128, 0.2);
+    --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.08);
+    --shadow-glow: 0 0 30px rgba(74, 144, 226, 0.15);
+  }
+  
+  /* Ensure cards stand out in light theme */
+  body[data-theme="light"] .card {
+    background: #FFFFFF;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+  
+  body[data-theme="light"] .card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -61,7 +72,7 @@
   
   /* Touch-friendly improvements */
   a, button {
-    -webkit-tap-highlight-color: rgba(139, 92, 246, 0.2);
+    -webkit-tap-highlight-color: rgba(74, 144, 226, 0.2);
     touch-action: manipulation;
   }
   
@@ -82,7 +93,7 @@
     .section-alt { padding: 3.5rem 0; }
   }
   .section-alt {
-    background: #000000;
+    background: var(--bg-alt);
     padding: 5rem 0;
     position: relative;
   }
@@ -93,11 +104,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.08) 0, transparent 50%);
+    background: radial-gradient(circle at 30% 20%, rgba(74, 144, 226, 0.06) 0, transparent 50%);
     pointer-events: none;
   }
   body[data-theme="light"] .section-alt {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    background: linear-gradient(135deg, #EDEFF2 0%, #F4F6F8 100%);
   }
   .section-header { margin-bottom: 3rem; }
   .section-header h2 {
@@ -114,21 +125,21 @@
   .site-header {
     position: sticky; top: 0; z-index: 50;
     backdrop-filter: blur(20px) saturate(180%);
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.8));
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(to bottom, rgba(18, 18, 18, 0.95), rgba(26, 26, 26, 0.85));
+    border-bottom: 1px solid var(--border-subtle);
     transition: all 0.3s ease;
   }
   .site-header.scrolled {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.98), rgba(0, 0, 0, 0.95));
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to bottom, rgba(18, 18, 18, 0.98), rgba(26, 26, 26, 0.95));
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
   body[data-theme="light"] .site-header {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7));
-    border-bottom-color: rgba(209, 213, 219, 0.6);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(245, 245, 245, 0.85));
+    border-bottom-color: var(--border-subtle);
   }
   body[data-theme="light"] .site-header.scrolled {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.9));
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
   .nav-container {
     display: flex; justify-content: space-between; align-items:center;
@@ -226,7 +237,7 @@
     right: -20%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0, transparent 70%);
+    background: radial-gradient(circle, rgba(74, 144, 226, 0.12) 0, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     animation: float 20s ease-in-out infinite;
@@ -296,6 +307,17 @@
     top: -0.5rem;
     font-family: Georgia, serif;
   }
+  .philosophy-quote::after {
+    content: '"';
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.3;
+    position: absolute;
+    right: -1rem;
+    bottom: -0.5rem;
+    font-family: Georgia, serif;
+  }
   .philosophy-caption {
     max-width: 36rem;
     margin: 0 0 2rem;
@@ -340,11 +362,11 @@
   .btn.primary { 
     background: var(--gradient-primary); 
     color:#fff; 
-    box-shadow:0 10px 30px rgba(139, 92, 246, 0.4); 
+    box-shadow:0 10px 30px rgba(74, 144, 226, 0.3); 
     margin-right:0.75rem; 
   }
   .btn.primary:hover { 
-    box-shadow:0 15px 40px rgba(139, 92, 246, 0.6); 
+    box-shadow:0 15px 40px rgba(74, 144, 226, 0.45); 
     transform:translateY(-2px) scale(1.02);
   }
   .btn.secondary { 
@@ -360,7 +382,7 @@
   }
 
   .hero-card {
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--card-bg);
     padding: 2rem; border-radius: var(--radius-xl);
     border:1px solid var(--border-subtle); 
     box-shadow: var(--shadow-soft);
@@ -376,7 +398,7 @@
     right: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0, transparent 70%);
+    background: radial-gradient(circle, rgba(74, 144, 226, 0.1) 0, transparent 70%);
     pointer-events: none;
   }
   .hero-card:hover {
@@ -389,12 +411,12 @@
     height: 120px; 
     border-radius: 999px;
     margin: 0 auto 1.5rem;
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
     position: relative;
     z-index: 1;
     transition: transform 0.3s ease;
     overflow: hidden;
-    border: 3px solid rgba(139, 92, 246, 0.3);
+    border: 3px solid rgba(74, 144, 226, 0.25);
     object-fit: cover;
   }
   .avatar-circle img {
@@ -407,7 +429,7 @@
   .hero-card:hover .avatar-circle {
     transform: scale(1.05);
     border-color: var(--accent);
-    box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6);
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.4);
   }
 
   /* Cards / grids */
@@ -416,7 +438,7 @@
     border-radius: var(--radius-lg);
     padding:2rem;
     border:1px solid var(--border-subtle);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-soft);
     transition: all 0.3s ease;
     backdrop-filter: blur(20px);
     position: relative;
@@ -533,7 +555,7 @@
     width:34px; height:34px;
     border-radius:999px;
     border:1px solid var(--border-subtle);
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--card-bg);
     color:var(--text);
     display:inline-flex;
     align-items:center;
@@ -543,13 +565,10 @@
     backdrop-filter: blur(8px);
     transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.12s ease;
   }
-  body[data-theme="light"] .slider-btn {
-    background: rgba(243,244,246,0.9);
-  }
   .slider-btn:hover{
     background: var(--accent);
     transform: translateY(-50%) scale(1.03);
-    box-shadow:0 14px 38px rgba(15,23,42,0.8);
+    box-shadow: var(--shadow-soft);
   }
   .slider-btn.prev { left:0.75rem; }
   .slider-btn.next { right:0.75rem; }
@@ -599,37 +618,62 @@
     width:22px; height:22px;
     fill:var(--text);
   }
-  .social-icon.whatsapp svg { fill:#22c55e; }
-  .social-icon.whatsapp { border-color:#22c55e; }
   .social-icon.linkedin svg { fill:#0a66c2; }
   .social-icon.linkedin { border-color:#0a66c2; }
   .social-icon.instagram svg { fill:#e1306c; }
   .social-icon.instagram { border-color:#e1306c; }
   .social-icon.github svg { fill:#e5e7eb; }
-
+  
+  /* WhatsApp Chat Button */
+  .whatsapp-chat {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: #25D366;
+    color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .whatsapp-chat:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+    background: #20BA5A;
+  }
+  .whatsapp-chat svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+  }
+  
   .social-icon:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(15,23,42,0.8);
+    box-shadow: var(--shadow-soft);
     border-color: var(--accent);
   }
 
   .site-footer {
     padding:1.5rem 0;
-    border-top:1px solid rgba(255, 255, 255, 0.1);
+    border-top:1px solid var(--border-subtle);
     text-align:center;
     font-size:0.8rem;
     color:var(--muted);
-    background: rgba(0, 0, 0, 0.95);
-  }
-  body[data-theme="light"] .site-footer {
-    background: rgba(249,250,251,0.96);
-    border-top-color: rgba(209,213,219,0.9);
+    background: var(--bg-alt);
   }
 
   /* Scroll to top button */
   .scroll-top {
     position: fixed;
-    bottom: 2rem;
+    bottom: 6rem;
     right: 2rem;
     width: 50px;
     height: 50px;
@@ -642,7 +686,7 @@
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
     transition: all 0.3s ease;
     z-index: 100;
   }
@@ -651,7 +695,7 @@
   }
   .scroll-top:hover {
     transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6);
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.45);
   }
 
   /* Animations */
@@ -697,7 +741,7 @@
       background: var(--card-bg);
       border-radius: var(--radius-lg);
       padding: 1rem 1.25rem;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      box-shadow: var(--shadow-soft);
       flex-direction: column;
       align-items: flex-start;
       display: none;
@@ -723,8 +767,18 @@
     .section-header p {
       margin: 0 auto;
     }
-    .scroll-top {
+    .whatsapp-chat {
       bottom: 1.5rem;
+      right: 1.5rem;
+      width: 45px;
+      height: 45px;
+    }
+    .whatsapp-chat svg {
+      width: 24px;
+      height: 24px;
+    }
+    .scroll-top {
+      bottom: 5.5rem;
       right: 1.5rem;
       width: 45px;
       height: 45px;
@@ -746,6 +800,10 @@
     .philosophy-quote::before {
       font-size: 2.5rem;
       left: -0.75rem;
+    }
+    .philosophy-quote::after {
+      font-size: 2.5rem;
+      right: -0.75rem;
     }
     .philosophy-caption {
       font-size: 0.85rem;
@@ -784,6 +842,10 @@
     .philosophy-quote::before {
       font-size: 2rem;
       left: -0.5rem;
+    }
+    .philosophy-quote::after {
+      font-size: 2rem;
+      right: -0.5rem;
     }
     .philosophy-caption {
       font-size: 0.8rem;
@@ -916,6 +978,10 @@
       font-size: 1.75rem;
       left: -0.4rem;
     }
+    .philosophy-quote::after {
+      font-size: 1.75rem;
+      right: -0.4rem;
+    }
     .philosophy-caption {
       font-size: 0.75rem;
       margin-bottom: 1rem;
@@ -951,8 +1017,18 @@
       padding: 0.85rem 1.25rem;
       font-size: 0.9rem;
     }
-    .scroll-top {
+    .whatsapp-chat {
       bottom: 1rem;
+      right: 1rem;
+      width: 42px;
+      height: 42px;
+    }
+    .whatsapp-chat svg {
+      width: 22px;
+      height: 22px;
+    }
+    .scroll-top {
+      bottom: 5rem;
       right: 1rem;
       width: 42px;
       height: 42px;
@@ -1018,16 +1094,16 @@
   <section class="hero">
     <div class="container hero-inner">
       <div>
-        <p class="hero-eyebrow">Aspiring Sales Professional & Future Businessman</p>
+        <p class="hero-eyebrow">Aspiring Sales Professional</p>
         <h1>Hi, I'm <span>Avyam Grover</span>.</h1>
         <p class="hero-subtitle">
-          I'm a 19-year-old BBA (Marketing) student building a career in sales and business.
+          I'm a 19-year-old BBA (Marketing) student committed to a career in sales.
           I'm passionate about communication, understanding people, and creating value through strategic selling.
           I also build websites as a hobby—it helps me understand digital products, attention, and persuasion in the modern marketplace.
         </p>
 
         <blockquote class="philosophy-quote">
-          "Every salesman isn't a businessman, but every businessman is one hell of a salesman."
+          Every salesman isn't a businessman, but every businessman is one hell of a salesman.
         </blockquote>
         <p class="philosophy-caption">Personal philosophy that shapes my interest in sales and business.</p>
 
@@ -1055,7 +1131,7 @@
     <div class="container">
       <div class="section-header">
         <h2>About Me</h2>
-        <p>Why I'm building a career in sales and how I approach business.</p>
+        <p>Why I'm committed to sales and how I approach business.</p>
       </div>
       <div style="max-width: 800px;">
         <p style="font-size: 1.05rem; margin-bottom: 1.5rem;">
@@ -1283,7 +1359,7 @@
 
       <a href="mailto:avyam61@gmail.com" class="btn primary">Email Me</a>
       <p style="margin-top:1rem; font-size:0.9rem;">
-        You can also reach me directly on WhatsApp at <strong>+91 896806535</strong>.
+        You can also reach me directly at <strong>+91 896806535</strong>.
       </p>
 
       <div class="social-strip">
@@ -1323,19 +1399,21 @@
           </svg>
         </a>
 
-        <!-- WhatsApp with pre-filled message -->
-        <a class="social-icon whatsapp"
-           href="https://wa.me/91896806535?text=Hi%20Avyam%2C%20I%27d%20like%20to%20discuss%20a%20project."
-           target="_blank" aria-label="WhatsApp">
-          <svg viewBox="0 0 24 24">
-            <path d="M12.04 2A9.93 9.93 0 0 0 2.1 11.94c0 1.75.46 3.45 1.34 4.95L2 22l5.25-1.38a9.95 9.95 0 0 0 4.79 1.22h.01A9.93 9.93 0 0 0 22 11.96 9.95 9.95 0 0 0 12.04 2zm-.02 2a7.95 7.95 0 0 1 7.96 7.95 7.95 7.95 0 0 1-7.96 7.95h-.01a7.9 7.9 0 0 1-4.03-1.1l-.29-.17-3.12.82.83-3.04-.19-.31A7.9 7.9 0 0 1 4.1 11.9 7.95 7.95 0 0 1 12.02 4zm-2.3 3.1c-.2 0-.52.08-.79.38-.27.31-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.06 3.3 5.06 4.49 2.5.99 3.01.9 3.55.84.54-.06 1.74-.71 1.99-1.39.25-.68.25-1.27.18-1.39-.07-.11-.27-.18-.57-.32-.3-.14-1.74-.86-2.01-.95-.27-.1-.47-.14-.66.14-.2.27-.76.95-.93 1.14-.17.2-.34.21-.64.07-.3-.14-1.26-.47-2.4-1.5-.89-.8-1.5-1.8-1.68-2.1-.18-.31-.02-.48.12-.62.13-.13.3-.34.45-.51.15-.17.2-.29.3-.49.1-.2.05-.38 0-.53-.05-.14-.62-1.53-.86-2.1-.23-.55-.47-.47-.68-.48z"/>
-          </svg>
-        </a>
       </div>
     </div>
   </section>
 
 </main>
+
+<a href="https://wa.me/91896806535?text=Hey%20Avyam%2C%20Lets%20Connect%21" 
+   class="whatsapp-chat" 
+   target="_blank" 
+   rel="noopener"
+   aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
 
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
 
